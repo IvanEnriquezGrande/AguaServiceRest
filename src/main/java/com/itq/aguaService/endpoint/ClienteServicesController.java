@@ -14,13 +14,21 @@ public class ClienteServicesController {
 	
 	@GetMapping("/client")
 	public Client readClient(@RequestParam(name="idCliente") String idCliente) {
-		
-		return new Client();
+		Client cliente = new Client();
+		cliente.setLastName1("Primero");
+		cliente.setName("Prueba");
+		cliente.setEmail("prueba@gmail.com");
+		cliente.setPhoneNumber("1234556");
+		cliente.setZone(1);
+		cliente.setCity("Queretaro");
+		return cliente;
 	}
 	
 	@PostMapping(value = "/client", consumes = "application/json", produces = "application/json")
 	public Ack createClient(@RequestBody Client cliente) {
-		
-		return new Ack();
+		Ack ack = new Ack();
+		ack.setCode(200);
+		ack.setDescription("Cliente creado, id" + cliente.getIdClient());
+		return ack;
 	}
 }
