@@ -28,7 +28,8 @@ public class Request {
 	
 	public Request() {
 		//Asignar ID
-		this.idRequest = Request.CONT_REQUEST=+1;
+		this.idRequest = Request.CONT_REQUEST;
+		Request.CONT_REQUEST++;
 		//Registrar la fecha de la solicitud
 		this.RequestDate = java.time.LocalDate.now();
 
