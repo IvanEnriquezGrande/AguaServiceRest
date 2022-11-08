@@ -83,5 +83,6 @@ public class Tank {
 		return "Tank [idTank=" + idTank + ", nameTank=" + nameTank + ", fillTime=" + fillTime + ", currentContent="
 				+ currentContent + ", size=" + size + ", state=" + state + "]";
 	}
+	
 }
 
