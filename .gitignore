@@ -36,3 +36,6 @@ build/
 .mvn/
 mvnw
 mvnw.cmd
+
+LOG_FILE_IS_UNDEFINED
+app/

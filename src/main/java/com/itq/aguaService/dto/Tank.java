@@ -26,7 +26,8 @@ public class Tank {
 	private String state;
 		
 	public Tank() {
-		this.idTank = Tank.CONT_TANK=+1;
+		this.idTank = Tank.CONT_TANK;
+		Tank.CONT_TANK++;
 	}
 	
 	public int getIdTank() {

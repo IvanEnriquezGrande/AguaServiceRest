@@ -37,7 +37,8 @@ public class Client {
 	private String city;
 	
 	public Client() {
-		this.idClient = Client.CONT_CLIENTS=+1;
+		this.idClient = CONT_CLIENTS;
+		Client.CONT_CLIENTS++;
 	}
 
 	public String getName() {
