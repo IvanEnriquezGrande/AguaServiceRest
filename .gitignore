@@ -36,7 +36,3 @@ build/
 .mvn/
 mvnw
 mvnw.cmd
-
-agua-service-client-INFO.log
-agua-service-client-ERROR.log
-LOG_FILE_IS_UNDEFINED
