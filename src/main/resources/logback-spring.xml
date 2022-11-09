@@ -34,29 +34,13 @@
             <onMatch>ACCEPT</onMatch>
             <onMismatch>DENY</onMismatch>
         </filter>
-	</appender>
-	
-	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>agua-service-client-INFO.log</file>
-		
-		<encoder>
-			<charset>UTF-8</charset>
-			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} ${LOG_LEVEL_PATTERN:-%5p} ${PID:- } --- %-46.46logger{45} : %m%n</pattern>
-		</encoder>
-				
-		<!-- Política de rotación de archivos de LOG -->
-		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-			<fileNamePattern>agua-service-client-INFO_%d{dd-MM-yyyy}.log%i</fileNamePattern>
-			<maxFileSize>50MB</maxFileSize>
-			<maxHistory>7</maxHistory>
-			<totalSizeCap>350MB</totalSizeCap>
-		</rollingPolicy>
-	
-		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+        
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
             <level>INFO</level>
             <onMatch>ACCEPT</onMatch>
             <onMismatch>DENY</onMismatch>
         </filter>
+        
 	</appender>
 	
 	<root level="DEBUG">

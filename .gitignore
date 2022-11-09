@@ -40,4 +40,4 @@ mvnw.cmd
 LOG_FILE_IS_UNDEFINED
 agua-service-client-ERROR.log
 agua-service-client-INFO.log
-agua-service-client-INFO_05-11-2022.log*
+agua-service-client-INFO_*.log*

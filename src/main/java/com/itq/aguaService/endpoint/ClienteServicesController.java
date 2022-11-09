@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.itq.aguaService.Business.ClientServiceBusiness;
 import com.itq.aguaService.dto.Ack;
 import com.itq.aguaService.dto.Client;
 
@@ -21,20 +22,18 @@ import org.slf4j.Logger;
 @RestController
 public class ClienteServicesController {
 	
-	private static ArrayList<Client> clientes = new ArrayList<>();
-	
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@GetMapping(value = "/client", produces = "application/json")
 	public Client readClient(@RequestParam(name="idCliente") int idCliente) {
-		Client client = searchClient(idCliente);
+		Client client = ClientServiceBusiness.searchClient(idCliente);
 		logger.info("Read solicitation, clientID: " + idCliente);
 		return client;
 	}
 	
 	@PostMapping(value = "/client", consumes = "application/json", produces = "application/json")
 	public Ack createClient(@Valid@RequestBody Client cliente) {
-		clientes.add(cliente);
+		ClientServiceBusiness.addClient(cliente);
 		Ack ack = new Ack();
 		ack.setCode(200);
 		ack.setDescription("Cliente creado, id" + cliente.getIdClient());
@@ -44,12 +43,9 @@ public class ClienteServicesController {
 	
 	@DeleteMapping(value = "/client", produces = "application/json")
 	public Ack deleteClient(@RequestParam(name="idCliente") int idCliente) {
-		int index;
 		Ack ack = new Ack();
-		index = searchClientAtArrayIndex(idCliente);
-		if(index != -1) {
-			int id = clientes.get(index).getIdClient();
-			clientes.remove(index);
+		int id = ClientServiceBusiness.deleteClient(idCliente);
+		if(id != -1) {
 			ack.setCode(200);
 			ack.setDescription("Client deleted, clientId:" + id);
 		}
@@ -58,25 +54,5 @@ public class ClienteServicesController {
 			ack.setDescription("Client not found");
 		}
 		return ack;
-	}
-	
-	private Client searchClient(int id) {
-		for(Client c : clientes) {
-			if(c.getIdClient() == id) {
-				return c;
-			}
-		}
-		return null;
-	}
-	
-	private int searchClientAtArrayIndex(int id) {
-		int index = 0;
-		for(Client client : clientes) {
-			if(client.getIdClient() == id) {
-				return index;
-			}
-			index++;
-		}
-		return -1;
 	}
 }
