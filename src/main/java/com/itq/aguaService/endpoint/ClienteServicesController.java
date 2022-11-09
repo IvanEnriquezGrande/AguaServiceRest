@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.itq.aguaService.Business.ClientServiceBusiness;
+import com.itq.aguaService.business.ClientServiceBusiness;
 import com.itq.aguaService.dto.Ack;
 import com.itq.aguaService.dto.Client;
 

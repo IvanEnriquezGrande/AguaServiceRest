@@ -1,4 +1,4 @@
-package com.itq.aguaService.Business;
+package com.itq.aguaService.business;
 
 import java.util.ArrayList;
 
