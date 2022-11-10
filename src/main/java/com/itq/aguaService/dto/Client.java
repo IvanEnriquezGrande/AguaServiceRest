@@ -41,6 +41,10 @@ public class Client {
 		Client.CONT_CLIENTS++;
 	}
 
+	public Client(int option) {
+		
+	}
+	
 	public String getName() {
 		return name;
 	}

@@ -1,7 +1,5 @@
 package com.itq.aguaService.endpoint;
 
-import java.util.ArrayList;
-
 import javax.validation.Valid;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.itq.aguaService.business.ClientServiceBusiness;
 import com.itq.aguaService.dto.Ack;
 import com.itq.aguaService.dto.Client;
+import com.itq.aguaService.exceptions.ObjectDeleteException;
+import com.itq.aguaService.exceptions.ObjectNotFoundException;
 
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
@@ -26,7 +26,12 @@ public class ClienteServicesController {
 	
 	@GetMapping(value = "/client", produces = "application/json")
 	public Client readClient(@RequestParam(name="idCliente") int idCliente) {
-		Client client = ClientServiceBusiness.searchClient(idCliente);
+		Client client = null;
+		try {
+			client = ClientServiceBusiness.searchClient(idCliente);
+		} catch (ObjectNotFoundException e) {
+			logger.error(e.getDescription());
+		}
 		logger.info("Read solicitation, clientID: " + idCliente);
 		return client;
 	}
@@ -44,15 +49,18 @@ public class ClienteServicesController {
 	@DeleteMapping(value = "/client", produces = "application/json")
 	public Ack deleteClient(@RequestParam(name="idCliente") int idCliente) {
 		Ack ack = new Ack();
-		int id = ClientServiceBusiness.deleteClient(idCliente);
-		if(id != -1) {
-			ack.setCode(200);
-			ack.setDescription("Client deleted, clientId:" + id);
-		}
-		else {
+		int id = -1;
+		try {
+			id = ClientServiceBusiness.deleteClient(idCliente);
+		} catch (ObjectDeleteException e) {
+			e.printStackTrace();
+			logger.error(e.getMessage());
 			ack.setCode(400);
 			ack.setDescription("Client not found");
+			return ack;
 		}
+		ack.setCode(200);
+		ack.setDescription("Client deleted, clientId:" + id);
 		return ack;
 	}
 }
