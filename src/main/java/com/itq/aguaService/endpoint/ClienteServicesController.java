@@ -5,6 +5,7 @@ import javax.validation.Valid;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,11 +27,12 @@ public class ClienteServicesController {
 	
 	@GetMapping(value = "/client", produces = "application/json")
 	public Client readClient(@RequestParam(name="idCliente") int idCliente) {
-		Client client = null;
+		Client client = new Client(1);
 		try {
 			client = ClientServiceBusiness.searchClient(idCliente);
 		} catch (ObjectNotFoundException e) {
 			logger.error(e.getDescription());
+			return client;
 		}
 		logger.info("Read solicitation, clientID: " + idCliente);
 		return client;
@@ -62,5 +64,19 @@ public class ClienteServicesController {
 		ack.setCode(200);
 		ack.setDescription("Client deleted, clientId:" + id);
 		return ack;
+	}
+	
+	@PutMapping(value = "/client", consumes = "application/json", produces = "application/json")
+	public Client updateClient(@RequestParam(name="idClient") int idClient,@RequestBody Client client) {
+		Ack ack = new Ack();
+		Client clientUpdate = new Client();
+		try {
+			clientUpdate = ClientServiceBusiness.updateClient(idClient, client);
+		} catch (ObjectNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		ack.setDescription(client.toString());
+		return clientUpdate;
 	}
 }

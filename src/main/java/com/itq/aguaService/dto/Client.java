@@ -37,8 +37,7 @@ public class Client {
 	private String city;
 	
 	public Client() {
-		this.idClient = CONT_CLIENTS;
-		Client.CONT_CLIENTS++;
+		
 	}
 
 	public Client(int option) {
@@ -57,8 +56,9 @@ public class Client {
 		return idClient;
 	}
 
-	public void setIdClient(int idClient) {
-		this.idClient = idClient;
+	public void setIdClient() {
+		this.idClient = CONT_CLIENTS;
+		Client.CONT_CLIENTS++;
 	}
 
 	public String getLastName1() {
