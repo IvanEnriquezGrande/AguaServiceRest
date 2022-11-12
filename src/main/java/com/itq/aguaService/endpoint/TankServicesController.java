@@ -12,40 +12,61 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.itq.aguaService.business.ClientServiceBusiness;
+import com.itq.aguaService.business.TankServiceBusiness;
 import com.itq.aguaService.dto.Ack;
+import com.itq.aguaService.dto.Client;
 import com.itq.aguaService.dto.Tank;
+import com.itq.aguaService.exceptions.ObjectDeleteException;
+import com.itq.aguaService.exceptions.ObjectNotFoundException;
 
 @RestController
-public class TankServiceController {
+public class TankServicesController {
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 		
 	@GetMapping("/tank")
 	public Tank readTank(@RequestParam(name="idTank") int idTank) {
 		// Funcionalidad leer
 		Tank tank = new Tank();
-		tank.setIdTank(idTank);
-		tank.setNameTank("Centro");
-		tank.setFillTime(100);
-		tank.setCurrentContent(1000);
-		tank.setSize(1000);
-		tank.setState("LLenando");
-		logger.info("Read solicitation");
+		try {
+			tank = TankServiceBusiness.searchTank(idTank);
+		} catch (ObjectNotFoundException e) {
+			logger.error(e.getDescription());
+			return tank;
+		}
+		
+		logger.info("Read solicitation, tankID: " + idTank);
 		return tank;
 	}
 	
 	@PostMapping(value = "/tank", consumes = "application/json", produces = "application/json")
 	public Ack createTank(@Valid@RequestBody Tank tank) {
 		// Funcionalidad crear
+		TankServiceBusiness.addTank(tank);
+		
 		Ack ack = new Ack();
 		ack.setCode(200);
-		ack.setDescription("Cliente creado, id" + tank.getIdTank());
-		logger.info("Client created");
+		ack.setDescription("Tanque creado, id: " + tank.getIdTank());
+		
+		logger.info("Tank created");
 		return ack;
 	}
 	
 	@PutMapping(value="/tank", consumes = "application/json", produces = "application/json")
 	public Ack updateTank(@RequestParam(name="idTank") int idTank, @Valid@RequestBody Tank tank) {
 		// Funcionalidad actualizar
+		/* Revisar
+		Ack ack = new Ack();
+		Tank tankUpdate = new tank();
+		try {
+			tankUpdate = TankServiceBusiness.updateTank(idTank, tank);
+		} catch (ObjectNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		ack.setDescription(tank.toString());
+		return tankUpdate;*/
+		
 		Ack ack = new Ack();
 		ack.setCode(200);
 		ack.setDescription("Tanque actualizado, id" + tank.getIdTank());
@@ -57,8 +78,19 @@ public class TankServiceController {
 	public Ack deleteTank(@RequestParam(name="idTank") int idTank) {
 		// Funcionalidad eliminar
 		Ack ack = new Ack();
+		int id = -1;
+		try {
+			id = TankServiceBusiness.deleteTank(idTank);
+		} catch (ObjectDeleteException e) {
+			e.printStackTrace();
+			logger.error(e.getMessage());
+			ack.setCode(400);
+			ack.setDescription("Tank not found.");
+			return ack;
+		}
+		
 		ack.setCode(200);
-		ack.setDescription("Tanque eliminado, id" + idTank);
+		ack.setDescription("Tank deleted, id" + id);
 		logger.info("Tank deleted");
 		return ack;
 	}

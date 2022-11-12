@@ -15,27 +15,27 @@ public class Tank {
 	@NotEmpty
 	@NotNull
 	private String nameTank;
-	@NotEmpty
+	//@NotEmpty
 	@NotNull
 	private int fillTime;
 	private int currentContent;
-	@NotEmpty
+	//@NotEmpty
 	@NotNull
 	@Min(1)
 	private int size;
 	private String state;
 		
 	public Tank() {
-		this.idTank = Tank.CONT_TANK;
-		Tank.CONT_TANK++;
+		
 	}
 	
 	public int getIdTank() {
 		return idTank;
 	}
 	
-	public void setIdTank(int idTank) {
-		this.idTank = idTank;
+	public void setIdTank() {
+		this.idTank = CONT_TANK;
+		Tank.CONT_TANK++;
 	}
 	
 	public String getNameTank() {
