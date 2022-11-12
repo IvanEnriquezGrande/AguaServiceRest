@@ -36,23 +36,23 @@ public class ClientServiceBusiness {
 			throw new ObjectNotFoundException("ERROR: Client not found, Id: " + idClient);
 		}
 
-		if(client.getName() != null) {
+		if(client.getName() != null && PatternsValidator.nameValidation(client.getName())) {
 			clientUpdate.setName(client.getName());
 		}
 		
-		if(client.getLastName1() != null) {
+		if(client.getLastName1() != null && PatternsValidator.nameValidation(client.getLastName1())) {
 			clientUpdate.setLastName1(client.getLastName1());
 		}
 		
-		if(client.getLastName2() != null) {
+		if(client.getLastName2() != null && PatternsValidator.nameValidation(client.getLastName2())) {
 			clientUpdate.setLastName2(client.getLastName2());
 		}
 		
-		if(client.getPhoneNumber() != null) {
+		if(client.getPhoneNumber() != null && PatternsValidator.numberValidation(client.getPhoneNumber())) {
 			clientUpdate.setPhoneNumber(client.getPhoneNumber());
 		}
 		
-		if(client.getEmail() != null) {
+		if(client.getEmail() != null && PatternsValidator.emailValidation(client.getEmail())) {
 			clientUpdate.setEmail(client.getEmail());
 		}
 		
