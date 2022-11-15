@@ -52,27 +52,6 @@ public class TankServicesController {
 		return ack;
 	}
 	
-	@PutMapping(value="/tank", consumes = "application/json", produces = "application/json")
-	public Ack updateTank(@RequestParam(name="idTank") int idTank, @Valid@RequestBody Tank tank) {
-		// Funcionalidad actualizar
-		/* Revisar
-		Ack ack = new Ack();
-		Tank tankUpdate = new tank();
-		try {
-			tankUpdate = TankServiceBusiness.updateTank(idTank, tank);
-		} catch (ObjectNotFoundException e) {
-			e.printStackTrace();
-		}
-		
-		ack.setDescription(tank.toString());
-		return tankUpdate;*/
-		
-		Ack ack = new Ack();
-		ack.setCode(200);
-		ack.setDescription("Tanque actualizado, id" + tank.getIdTank());
-		logger.info("Tank updated");
-		return ack;
-	}
 	
 	@DeleteMapping(value="/tank")
 	public Ack deleteTank(@RequestParam(name="idTank") int idTank) {

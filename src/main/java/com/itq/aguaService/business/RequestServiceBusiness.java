@@ -18,6 +18,26 @@ public class RequestServiceBusiness {
 		throw new ObjectNotFoundException("ERROR: Request not found, Id: " + id);
 	}
 	
+	public static Request updateRequest(int idRequest, Request request) throws ObjectNotFoundException {
+		Request requestUpdate = new Request();
+		try {
+			requestUpdate = searchRequest(idRequest);
+		}
+		catch (ObjectNotFoundException e) {
+			throw new ObjectNotFoundException("ERROR: Request not found, Id: " + idRequest);
+		}
+		if(request.getIdTank() != 0) {
+			requestUpdate.setIdTank(request.getIdTank());
+		}
+		if(request.getLiters() != 0 && requestUpdate.getLiters() != request.getLiters()) {
+			requestUpdate.setLiters(request.getLiters());
+		}
+		if(request.getStatus() != null) {
+			requestUpdate.setStatus(request.getStatus());
+		}
+		return requestUpdate;
+	}
+	
 	public static void addRequest(Request request) {
 		request.setIdRequest();
 		requests.add(request);

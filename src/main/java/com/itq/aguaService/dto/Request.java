@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -18,10 +19,13 @@ public class Request {
 	private int idRequest;
 	//@NotEmpty
 	@NotNull
+	@NotBlank
 	private int idClient;
 	private int idTank;
 	@Min(1)
 	@Max(1000)
+	@NotBlank
+	@NotNull
 	private int liters;
 	private LocalDate RequestDate;
 	private String status;

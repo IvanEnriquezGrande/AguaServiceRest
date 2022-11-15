@@ -67,16 +67,19 @@ public class ClienteServicesController {
 	}
 	
 	@PutMapping(value = "/client", consumes = "application/json", produces = "application/json")
-	public Client updateClient(@RequestParam(name="idClient") int idClient,@RequestBody Client client) {
+	public Ack updateClient(@RequestParam(name="idClient") int idClient,@RequestBody Client client) {
 		Ack ack = new Ack();
 		Client clientUpdate = new Client();
 		try {
 			clientUpdate = ClientServiceBusiness.updateClient(idClient, client);
 		} catch (ObjectNotFoundException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			ack.setCode(400);
+			ack.setDescription("Client not found: " + idClient);
+			return ack;
 		}
-		
-		ack.setDescription(client.toString());
-		return clientUpdate;
+		ack.setCode(200);
+		ack.setDescription(clientUpdate.toString());
+		return ack;
 	}
 }
