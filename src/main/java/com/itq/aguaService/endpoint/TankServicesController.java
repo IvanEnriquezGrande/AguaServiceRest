@@ -43,12 +43,10 @@ public class TankServicesController {
 	public Ack createTank(@Valid@RequestBody Tank tank) {
 		// Funcionalidad crear
 		TankServiceBusiness.addTank(tank);
-		
+		logger.info("Tank created: " + tank.toString());
 		Ack ack = new Ack();
 		ack.setCode(200);
 		ack.setDescription("Tanque creado, id: " + tank.getIdTank());
-		
-		logger.info("Tank created");
 		return ack;
 	}
 	
@@ -60,17 +58,17 @@ public class TankServicesController {
 		int id = -1;
 		try {
 			id = TankServiceBusiness.deleteTank(idTank);
+			logger.info("TANK DELETED, id: " + idTank);
 		} catch (ObjectDeleteException e) {
 			e.printStackTrace();
 			logger.error(e.getMessage());
-			ack.setCode(400);
+			ack.setCode(205);
 			ack.setDescription("Tank not found.");
 			return ack;
 		}
 		
 		ack.setCode(200);
 		ack.setDescription("Tank deleted, id" + id);
-		logger.info("Tank deleted");
 		return ack;
 	}
 }

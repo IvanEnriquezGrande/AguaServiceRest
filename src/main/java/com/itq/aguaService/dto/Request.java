@@ -19,23 +19,19 @@ public class Request {
 	private int idRequest;
 	//@NotEmpty
 	@NotNull
-	@NotBlank
 	private int idClient;
 	private int idTank;
 	@Min(1)
 	@Max(1000)
-	@NotBlank
-	@NotNull
+
 	private int liters;
 	private LocalDate RequestDate;
 	private String status;
 	
 	public Request() {
 		//Asignar ID
-		this.idRequest = Request.CONT_REQUEST;
-		Request.CONT_REQUEST++;
 		//Registrar la fecha de la solicitud
-		this.RequestDate = java.time.LocalDate.now();
+		
 
 	}
 
@@ -76,8 +72,8 @@ public class Request {
 		return RequestDate;
 	}
 
-	public void setRequestDate(LocalDate requestDate) {
-		RequestDate = requestDate;
+	public void setRequestDate() {
+		this.RequestDate = java.time.LocalDate.now();
 	}
 
 	public String getStatus() {

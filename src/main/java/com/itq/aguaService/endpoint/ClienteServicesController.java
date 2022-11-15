@@ -44,7 +44,7 @@ public class ClienteServicesController {
 		Ack ack = new Ack();
 		ack.setCode(200);
 		ack.setDescription("Cliente creado, id" + cliente.getIdClient());
-		logger.info("Client created");
+		logger.info("Client created:" + cliente.toString());
 		return ack;
 	}
 	
@@ -54,15 +54,16 @@ public class ClienteServicesController {
 		int id = -1;
 		try {
 			id = ClientServiceBusiness.deleteClient(idCliente);
+			logger.info("Client deleted, id: "+ idCliente);
 		} catch (ObjectDeleteException e) {
 			e.printStackTrace();
 			logger.error(e.getMessage());
-			ack.setCode(400);
+			ack.setCode(205);
 			ack.setDescription("Client not found");
 			return ack;
 		}
 		ack.setCode(200);
-		ack.setDescription("Client deleted, clientId:" + id);
+		ack.setDescription("Client deleted, clientId:" + idCliente);
 		return ack;
 	}
 	
@@ -72,9 +73,11 @@ public class ClienteServicesController {
 		Client clientUpdate = new Client();
 		try {
 			clientUpdate = ClientServiceBusiness.updateClient(idClient, client);
+			logger.info("Client updated, id: " + idClient);
 		} catch (ObjectNotFoundException e) {
 			//e.printStackTrace();
-			ack.setCode(400);
+			logger.error(e.getDescription());
+			ack.setCode(205);
 			ack.setDescription("Client not found: " + idClient);
 			return ack;
 		}

@@ -15,8 +15,6 @@ public class Tank {
 	@NotEmpty
 	@NotNull
 	private String nameTank;
-	//@NotEmpty
-	@NotNull
 	private int fillTime;
 	private int currentContent;
 	//@NotEmpty

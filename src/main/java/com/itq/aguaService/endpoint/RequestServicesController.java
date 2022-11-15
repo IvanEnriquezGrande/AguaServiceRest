@@ -26,23 +26,23 @@ public class RequestServicesController {
 	@GetMapping("/request")
 	public Request readRequest(@RequestParam(name = "idRequest") int idRequest) {
 		Request request = new Request();
+		logger.info("Read solicitation, requestID: " + idRequest);
 		try {
 			request = RequestServiceBusiness.searchRequest(idRequest);
 		} catch (ObjectNotFoundException e) {
 			logger.error(e.getDescription());
 			return request;
 		}
-		logger.info("Read solicitation, requestID: " + idRequest);
 		return request;
 	}
 	
 	@PostMapping(value = "/request", consumes = "application/json", produces = "application/json")
-	public Ack createRequest(@Valid@RequestBody Request request) {
+	public Ack createRequest(@Valid @RequestBody Request request) {
+		logger.info("Request created" + request.toString());
 		RequestServiceBusiness.addRequest(request);
 		Ack ack = new Ack();
 		ack.setCode(200);
 		ack.setDescription("Request creado, id" + request.getIdRequest());
-		logger.info("Request created");
 		return ack;
 	}
 	
@@ -50,11 +50,12 @@ public class RequestServicesController {
 	public Ack updateClient(@RequestParam(name="idRequest") int idRequest,@RequestBody Request request) {
 		Ack ack = new Ack();
 		Request requestUpdate = new Request();
+		logger.info("Update client/:"  + request.toString());
 		try {
 			requestUpdate = RequestServiceBusiness.updateRequest(idRequest, request);
 		} catch (ObjectNotFoundException e) {
 			logger.error(e.getDescription());
-			ack.setCode(400);
+			ack.setCode(205);
 			ack.setDescription("Error request not found: " + idRequest);
 		}
 		ack.setCode(200);

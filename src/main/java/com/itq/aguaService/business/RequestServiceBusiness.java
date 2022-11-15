@@ -40,6 +40,7 @@ public class RequestServiceBusiness {
 	
 	public static void addRequest(Request request) {
 		request.setIdRequest();
+		request.setRequestDate();
 		requests.add(request);
 	}
 
