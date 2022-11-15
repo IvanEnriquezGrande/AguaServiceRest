@@ -39,8 +39,9 @@ public class Request {
 		return idRequest;
 	}
 
-	public void setIdRequest(int idRequest) {
-		this.idRequest = idRequest;
+	public void setIdRequest() {
+		this.idRequest = CONT_REQUEST;
+		Request.CONT_REQUEST++;
 	}
 
 	public int getIdClient() {
