@@ -16,7 +16,7 @@ public class Request {
 	private static final SimpleDateFormat FORMATER = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
 	
 	private int idRequest;
-	@NotEmpty
+	//@NotEmpty
 	@NotNull
 	private int idClient;
 	private int idTank;
