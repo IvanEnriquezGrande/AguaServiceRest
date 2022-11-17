@@ -1,5 +1,7 @@
 package com.itq.aguaService.endpoint;
 
+import java.util.ArrayList;
+
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -34,6 +36,22 @@ public class RequestServicesController {
 			return request;
 		}
 		return request;
+	}
+	
+	@GetMapping(value = "/request/index", produces = "application/json")
+	public Ack indexRequest() {
+		logger.info("Peticion de todos los request");
+		Ack ack = new Ack();
+		ack.setCode(200);
+		String description = "Request number: " + RequestServiceBusiness.getNRequest();
+		ArrayList<Request> requests = RequestServiceBusiness.getRequest();
+		String lista = "";
+		for(Request request : requests) {
+			lista+=request.toString()+"; ";
+		}
+		ack.setExtra(lista);
+		ack.setDescription(description);
+		return ack;
 	}
 	
 	@PostMapping(value = "/request", consumes = "application/json", produces = "application/json")

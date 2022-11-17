@@ -14,13 +14,14 @@ public class ClientServiceBusiness {
 		clientes.add(client);
 	}
 	
-	public static int deleteClient(int id) throws ObjectDeleteException {
+	public static Client deleteClient(int id) throws ObjectDeleteException {
 		int index = -1;
 		try {
 			index = clientes.indexOf(searchClient(id));
+			Client client = ClientServiceBusiness.searchClient(id);
 			clientes.remove(index);
-			int idClient = clientes.get(index).getIdClient();
-			return idClient;
+			//int idClient = clientes.get(index).getIdClient();
+			return client;
 		} catch (ObjectNotFoundException e) {
 			e.printStackTrace();
 			throw new ObjectDeleteException("Delete Error: " + e.getDescription());
@@ -82,5 +83,13 @@ public class ClientServiceBusiness {
 			}
 		}
 		throw new ObjectNotFoundException("ERROR: Client not found, Id: " + id);
+	}
+	
+	public static ArrayList<Client> getClients(){
+		return ClientServiceBusiness.clientes;
+	}
+	
+	public static int getNClients() {
+		return ClientServiceBusiness.clientes.size();
 	}
 }

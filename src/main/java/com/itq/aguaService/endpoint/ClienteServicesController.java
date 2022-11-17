@@ -1,5 +1,7 @@
 package com.itq.aguaService.endpoint;
 
+import java.util.ArrayList;
+
 import javax.validation.Valid;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -11,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.itq.aguaService.business.ClientServiceBusiness;
+import com.itq.aguaService.business.TankServiceBusiness;
 import com.itq.aguaService.dto.Ack;
 import com.itq.aguaService.dto.Client;
+import com.itq.aguaService.dto.Tank;
 import com.itq.aguaService.exceptions.ObjectDeleteException;
 import com.itq.aguaService.exceptions.ObjectNotFoundException;
 
@@ -25,45 +29,62 @@ public class ClienteServicesController {
 	
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
+	
 	@GetMapping(value = "/client", produces = "application/json")
 	public Client readClient(@RequestParam(name="idCliente") int idCliente) {
 		Client client = new Client(1);
 		try {
 			client = ClientServiceBusiness.searchClient(idCliente);
+			logger.info("Read solicitation, clientID: " + idCliente);
 		} catch (ObjectNotFoundException e) {
 			logger.error(e.getDescription());
 			return client;
 		}
-		logger.info("Read solicitation, clientID: " + idCliente);
 		return client;
+	}
+	
+	@GetMapping(value = "/client/index", produces = "application/json")
+	public Ack indexClient() {
+		logger.info("Peticion de todos los clientes");
+		Ack ack = new Ack();
+		ack.setCode(200);
+		String description = "Clients number: " + ClientServiceBusiness.getNClients();
+		ArrayList<Client> clients = ClientServiceBusiness.getClients();
+		String lista = "";
+		for(Client client : clients) {
+			lista+=client.toString()+"; ";
+		}
+		ack.setExtra(lista);
+		ack.setDescription(description);
+		return ack;
 	}
 	
 	@PostMapping(value = "/client", consumes = "application/json", produces = "application/json")
 	public Ack createClient(@Valid@RequestBody Client cliente) {
 		ClientServiceBusiness.addClient(cliente);
+		logger.info("Client created:" + cliente.toString());
 		Ack ack = new Ack();
 		ack.setCode(200);
 		ack.setDescription("Cliente creado, id" + cliente.getIdClient());
-		logger.info("Client created:" + cliente.toString());
 		return ack;
 	}
 	
 	@DeleteMapping(value = "/client", produces = "application/json")
 	public Ack deleteClient(@RequestParam(name="idCliente") int idCliente) {
 		Ack ack = new Ack();
-		int id = -1;
+		Client client = new Client();
 		try {
-			id = ClientServiceBusiness.deleteClient(idCliente);
+			client = ClientServiceBusiness.deleteClient(idCliente);
 			logger.info("Client deleted, id: "+ idCliente);
 		} catch (ObjectDeleteException e) {
 			e.printStackTrace();
 			logger.error(e.getMessage());
 			ack.setCode(205);
-			ack.setDescription("Client not found");
+			ack.setDescription("Client not found, ID: " + idCliente);
 			return ack;
 		}
 		ack.setCode(200);
-		ack.setDescription("Client deleted, clientId:" + idCliente);
+		ack.setDescription("Client deleted " + client.toString());
 		return ack;
 	}
 	

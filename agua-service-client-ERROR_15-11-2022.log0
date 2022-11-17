@@ -1,0 +1,56 @@
+2022-11-15 09:36:27.755  INFO 17264 --- c.itq.aguaService.AguaServiceRestApplication   : Starting AguaServiceRestApplication using Java 17.0.4.1 on LAPTOP-NS4CRQIQ with PID 17264 (D:\SpringWorkspace\AguaServiceRest\target\classes started by Ivane in D:\SpringWorkspace\AguaServiceRest)
+2022-11-15 09:36:27.760  INFO 17264 --- c.itq.aguaService.AguaServiceRestApplication   : No active profile set, falling back to 1 default profile: "default"
+2022-11-15 09:36:29.014  INFO 17264 --- rRegistrationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$63e50c4d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-11-15 09:36:29.104  INFO 17264 --- o.s.w.s.a.s.AnnotationActionEndpointMapping    : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2022-11-15 09:36:29.577  INFO 17264 --- o.s.boot.web.embedded.tomcat.TomcatWebServer   : Tomcat initialized with port(s): 8084 (http)
+2022-11-15 09:36:29.592  INFO 17264 --- org.apache.catalina.core.StandardService       : Starting service [Tomcat]
+2022-11-15 09:36:29.592  INFO 17264 --- org.apache.catalina.core.StandardEngine        : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-15 09:36:29.809  INFO 17264 --- o.a.c.c.C.[Tomcat].[localhost].[/]             : Initializing Spring embedded WebApplicationContext
+2022-11-15 09:36:29.810  INFO 17264 --- o.s.b.w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1963 ms
+2022-11-15 09:36:30.462  INFO 17264 --- o.s.boot.web.embedded.tomcat.TomcatWebServer   : Tomcat started on port(s): 8084 (http) with context path ''
+2022-11-15 09:36:30.480  INFO 17264 --- c.itq.aguaService.AguaServiceRestApplication   : Started AguaServiceRestApplication in 3.63 seconds (JVM running for 5.095)
+2022-11-15 09:36:45.083  INFO 17264 --- o.a.c.c.C.[Tomcat].[localhost].[/]             : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-11-15 09:36:45.084  INFO 17264 --- o.s.web.servlet.DispatcherServlet              : Initializing Servlet 'dispatcherServlet'
+2022-11-15 09:36:45.086  INFO 17264 --- o.s.web.servlet.DispatcherServlet              : Completed initialization in 2 ms
+2022-11-15 09:36:45.457  INFO 17264 --- c.i.a.endpoint.ClienteServicesController       : Client created:Client [name=Prueba1, idClient=1, lastName1=Primero, lastName2=Segundo, zone=0, phoneNumber=1234556, email=prueba@gmail.com, street=test1, colonia=coloniatest, postalCode=12344, city=Queretaro]
+2022-11-15 09:36:49.104  INFO 17264 --- c.i.a.endpoint.ClienteServicesController       : Client created:Client [name=Prueba2, idClient=2, lastName1=Primero, lastName2=Segundo, zone=0, phoneNumber=1234556, email=prueba@gmail.com, street=test1, colonia=coloniatest, postalCode=12344, city=Queretaro]
+2022-11-15 09:36:52.967  INFO 17264 --- c.i.a.endpoint.ClienteServicesController       : Client created:Client [name=Prueba3, idClient=3, lastName1=Primero, lastName2=Segundo, zone=0, phoneNumber=1234556, email=prueba@gmail.com, street=test1, colonia=coloniatest, postalCode=12344, city=Queretaro]
+2022-11-15 09:37:03.715  INFO 17264 --- c.i.a.endpoint.TankServicesController          : Tank created: Tank [idTank=1, nameTank=tank1, fillTime=20, currentContent=0, size=54000, state=vacio]
+2022-11-15 09:37:07.983  INFO 17264 --- c.i.a.endpoint.TankServicesController          : Tank created: Tank [idTank=2, nameTank=tank2, fillTime=20, currentContent=0, size=54000, state=vacio]
+2022-11-15 09:37:11.778  INFO 17264 --- c.i.a.endpoint.TankServicesController          : Tank created: Tank [idTank=3, nameTank=tank3, fillTime=20, currentContent=0, size=54000, state=vacio]
+2022-11-15 09:37:16.120  INFO 17264 --- c.i.a.endpoint.ClienteServicesController       : Read solicitation, clientID: 1
+2022-11-15 09:37:19.545  INFO 17264 --- c.i.a.endpoint.ClienteServicesController       : Read solicitation, clientID: 2
+2022-11-15 09:37:23.441  INFO 17264 --- c.i.a.endpoint.ClienteServicesController       : Read solicitation, clientID: 3
+2022-11-15 09:37:27.284  INFO 17264 --- c.i.a.endpoint.ClienteServicesController       : Client deleted, id: 1
+2022-11-15 09:37:34.075  INFO 17264 --- c.i.a.endpoint.RequestServicesController       : Request createdRequest [idRequest=0, idClient=4, idTank=5, liters=360, RequestDate=null, status=procesing]
+2022-11-15 13:10:58.007  INFO 17264 --- ionAdminMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2022-11-15 13:10:58.165  INFO 17264 --- org.apache.catalina.core.StandardService       : Stopping service [Tomcat]
+2022-11-15 13:10:58.172  INFO 17264 --- o.a.c.c.C.[Tomcat].[localhost].[/]             : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2022-11-15 13:19:06.394  INFO 18416 --- c.itq.aguaService.AguaServiceRestApplication   : Starting AguaServiceRestApplication using Java 17.0.4.1 on LAPTOP-NS4CRQIQ with PID 18416 (D:\SpringWorkspace\AguaServiceRest\target\classes started by Ivane in D:\SpringWorkspace\AguaServiceRest)
+2022-11-15 13:19:06.400  INFO 18416 --- c.itq.aguaService.AguaServiceRestApplication   : No active profile set, falling back to 1 default profile: "default"
+2022-11-15 13:19:07.672  INFO 18416 --- rRegistrationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$ee6771b1] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-11-15 13:19:07.743  INFO 18416 --- o.s.w.s.a.s.AnnotationActionEndpointMapping    : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2022-11-15 13:19:08.251  INFO 18416 --- o.s.boot.web.embedded.tomcat.TomcatWebServer   : Tomcat initialized with port(s): 8084 (http)
+2022-11-15 13:19:08.271  INFO 18416 --- org.apache.catalina.core.StandardService       : Starting service [Tomcat]
+2022-11-15 13:19:08.271  INFO 18416 --- org.apache.catalina.core.StandardEngine        : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-15 13:19:08.509  INFO 18416 --- o.a.c.c.C.[Tomcat].[localhost].[/]             : Initializing Spring embedded WebApplicationContext
+2022-11-15 13:19:08.509  INFO 18416 --- o.s.b.w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2012 ms
+2022-11-15 13:19:09.231  INFO 18416 --- o.s.boot.web.embedded.tomcat.TomcatWebServer   : Tomcat started on port(s): 8084 (http) with context path ''
+2022-11-15 13:19:09.250  INFO 18416 --- c.itq.aguaService.AguaServiceRestApplication   : Started AguaServiceRestApplication in 3.86 seconds (JVM running for 5.392)
+2022-11-15 13:19:18.459  INFO 18416 --- o.a.c.c.C.[Tomcat].[localhost].[/]             : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-11-15 13:19:18.460  INFO 18416 --- o.s.web.servlet.DispatcherServlet              : Initializing Servlet 'dispatcherServlet'
+2022-11-15 13:19:18.464  INFO 18416 --- o.s.web.servlet.DispatcherServlet              : Completed initialization in 3 ms
+2022-11-15 13:19:18.835  INFO 18416 --- c.i.a.endpoint.ClienteServicesController       : Client created:Client [name=Prueba1, idClient=1, lastName1=Primero, lastName2=Segundo, zone=0, phoneNumber=1234556, email=prueba@gmail.com, street=test1, colonia=coloniatest, postalCode=12344, city=Queretaro]
+2022-11-15 13:19:25.086  INFO 18416 --- c.i.a.endpoint.ClienteServicesController       : Client created:Client [name=Prueba2, idClient=2, lastName1=Primero, lastName2=Segundo, zone=0, phoneNumber=1234556, email=prueba@gmail.com, street=test1, colonia=coloniatest, postalCode=12344, city=Queretaro]
+2022-11-15 13:19:32.084  INFO 18416 --- c.i.a.endpoint.ClienteServicesController       : Client created:Client [name=Prueba3, idClient=3, lastName1=Primero, lastName2=Segundo, zone=0, phoneNumber=1234556, email=prueba@gmail.com, street=test1, colonia=coloniatest, postalCode=12344, city=Queretaro]
+2022-11-15 13:19:38.419  INFO 18416 --- c.i.a.endpoint.ClienteServicesController       : Read solicitation, clientID: 1
+2022-11-15 13:20:05.226  INFO 18416 --- c.i.a.endpoint.ClienteServicesController       : Read solicitation, clientID: 2
+2022-11-15 13:20:11.923  INFO 18416 --- c.i.a.endpoint.ClienteServicesController       : Client deleted, id: 1
+2022-11-15 13:20:19.350 ERROR 18416 --- c.i.a.endpoint.ClienteServicesController       : Delete Error:Delete Error: ERROR: Client not found, Id: 5, CODE: 402
+2022-11-15 13:20:37.027  INFO 18416 --- c.i.a.endpoint.TankServicesController          : Tank created: Tank [idTank=1, nameTank=tank1, fillTime=20, currentContent=0, size=54000, state=vacio]
+2022-11-15 13:20:41.659  INFO 18416 --- c.i.a.endpoint.TankServicesController          : Tank created: Tank [idTank=2, nameTank=tank2, fillTime=20, currentContent=0, size=54000, state=vacio]
+2022-11-15 13:20:46.320  INFO 18416 --- c.i.a.endpoint.TankServicesController          : Read solicitation, tankID: 1
+2022-11-15 13:20:55.426  INFO 18416 --- c.i.a.endpoint.TankServicesController          : Read solicitation, tankID: 2
+2022-11-15 13:21:43.152  INFO 18416 --- ionAdminMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2022-11-15 13:21:43.192  INFO 18416 --- org.apache.catalina.core.StandardService       : Stopping service [Tomcat]
+2022-11-15 13:21:43.195  INFO 18416 --- o.a.c.c.C.[Tomcat].[localhost].[/]             : Destroying Spring FrameworkServlet 'dispatcherServlet'

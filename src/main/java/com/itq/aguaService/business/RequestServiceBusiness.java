@@ -7,7 +7,7 @@ import com.itq.aguaService.exceptions.ObjectNotFoundException;
 
 public class RequestServiceBusiness {
 
-	public static ArrayList<Request> requests = new ArrayList<>();
+	private static ArrayList<Request> requests = new ArrayList<>();
 
 	public static Request searchRequest(int id) throws ObjectNotFoundException {
 		for(Request request : requests) {
@@ -42,6 +42,14 @@ public class RequestServiceBusiness {
 		request.setIdRequest();
 		request.setRequestDate();
 		requests.add(request);
+	}
+	
+	public static ArrayList<Request> getRequest(){
+		return RequestServiceBusiness.requests;
+	}
+	
+	public static int getNRequest() {
+		return RequestServiceBusiness.requests.size();
 	}
 
 }

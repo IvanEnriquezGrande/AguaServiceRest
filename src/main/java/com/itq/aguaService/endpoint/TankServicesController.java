@@ -1,5 +1,7 @@
 package com.itq.aguaService.endpoint;
 
+import java.util.ArrayList;
+
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -39,6 +41,22 @@ public class TankServicesController {
 		return tank;
 	}
 	
+	@GetMapping(value = "/tank/index", produces = "application/json")
+	public Ack indexTank() {
+		logger.info("Peticion de todos los tanques");
+		Ack ack = new Ack();
+		ack.setCode(200);
+		String description = "Tanks number: " + TankServiceBusiness.getNTanks();
+		ArrayList<Tank> tanks = TankServiceBusiness.getTanks();
+		String lista = "";
+		for(Tank tank : tanks) {
+			lista+=tank.toString()+"; ";
+		}
+		ack.setExtra(lista);
+		ack.setDescription(description);
+		return ack;
+	}
+	
 	@PostMapping(value = "/tank", consumes = "application/json", produces = "application/json")
 	public Ack createTank(@Valid@RequestBody Tank tank) {
 		// Funcionalidad crear
@@ -55,10 +73,11 @@ public class TankServicesController {
 	public Ack deleteTank(@RequestParam(name="idTank") int idTank) {
 		// Funcionalidad eliminar
 		Ack ack = new Ack();
+		Tank tank = new Tank();
 		int id = -1;
 		try {
-			id = TankServiceBusiness.deleteTank(idTank);
-			logger.info("TANK DELETED, id: " + idTank);
+			tank = TankServiceBusiness.deleteTank(idTank);
+			logger.info("TANK DELETED " + tank.toString());
 		} catch (ObjectDeleteException e) {
 			e.printStackTrace();
 			logger.error(e.getMessage());

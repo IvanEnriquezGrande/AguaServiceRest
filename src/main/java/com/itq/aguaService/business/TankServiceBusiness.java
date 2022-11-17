@@ -14,17 +14,26 @@ public class TankServiceBusiness {
 		tanks.add(tank);
 	}
 	
-	public static int deleteTank(int id) throws ObjectDeleteException {
+	public static int getNTanks() {
+		return tanks.size();
+	}
+	
+	public static Tank deleteTank(int id) throws ObjectDeleteException {
 		int index = -1;
 		try {
 			index = tanks.indexOf(searchTank(id));
+			Tank tank = TankServiceBusiness.searchTank(id);
 			tanks.remove(index);
-			int idTank = tanks.get(index).getIdTank();
-			return idTank;
+			//int idTank = tanks.get(index).getIdTank();
+			return tank;
 		} catch (ObjectNotFoundException e) {
 			e.printStackTrace();
 			throw new ObjectDeleteException("Delete Error: " + e.getDescription());
 		}
+	}
+	
+	public static ArrayList<Tank> getTanks(){ 
+		return TankServiceBusiness.tanks;
 	}
 	
 	/*
