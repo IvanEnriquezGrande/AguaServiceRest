@@ -26,9 +26,13 @@ import com.itq.aguaService.exceptions.ObjectNotFoundException;
 public class TankServicesController {
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 		
+	/**
+	 * Send a t by tankd
+	 * @param int idTank to get information
+	 * @return Tank the tank properties
+	 * */
 	@GetMapping("/tank")
 	public Tank readTank(@RequestParam(name="idTank") int idTank) {
-		// Funcionalidad leer
 		Tank tank = new Tank();
 		try {
 			tank = TankServiceBusiness.searchTank(idTank);
@@ -41,6 +45,10 @@ public class TankServicesController {
 		return tank;
 	}
 	
+	/**
+	 * Send a tank index
+	 * @return Ack with the description and list of tanks
+	 * */
 	@GetMapping(value = "/tank/index", produces = "application/json")
 	public Ack indexTank() {
 		logger.info("Peticion de todos los tanques");
@@ -57,9 +65,13 @@ public class TankServicesController {
 		return ack;
 	}
 	
+	/**
+	 * Create a tank
+	 * @param Tank the valid values
+	 * @return Ack return the status of the new tank
+	 * */
 	@PostMapping(value = "/tank", consumes = "application/json", produces = "application/json")
 	public Ack createTank(@Valid@RequestBody Tank tank) {
-		// Funcionalidad crear
 		TankServiceBusiness.addTank(tank);
 		logger.info("Tank created: " + tank.toString());
 		Ack ack = new Ack();
@@ -68,7 +80,11 @@ public class TankServicesController {
 		return ack;
 	}
 	
-	
+	/**
+	 * Delete a tank by id
+	 * @param int idTank to delete
+	 * @return Ack with the delete status
+	 * */
 	@DeleteMapping(value="/tank")
 	public Ack deleteTank(@RequestParam(name="idTank") int idTank) {
 		// Funcionalidad eliminar

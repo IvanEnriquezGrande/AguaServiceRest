@@ -25,6 +25,11 @@ public class RequestServicesController {
 
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
+	/**
+	 * Send a order by id
+	 * @param int idRequest to get information
+	 * @return Request the order properties
+	 * */
 	@GetMapping("/request")
 	public Request readRequest(@RequestParam(name = "idRequest") int idRequest) {
 		Request request = new Request();
@@ -38,6 +43,10 @@ public class RequestServicesController {
 		return request;
 	}
 	
+	/**
+	 * Send an order's index
+	 * @return Ack with the description and list of orders
+	 * */
 	@GetMapping(value = "/request/index", produces = "application/json")
 	public Ack indexRequest() {
 		logger.info("Peticion de todos los request");
@@ -54,6 +63,11 @@ public class RequestServicesController {
 		return ack;
 	}
 	
+	/**
+	 * Create an order
+	 * @param Request the valid values
+	 * @return Ack return the status of the new order
+	 * */
 	@PostMapping(value = "/request", consumes = "application/json", produces = "application/json")
 	public Ack createRequest(@Valid @RequestBody Request request) {
 		logger.info("Request created" + request.toString());
@@ -64,6 +78,12 @@ public class RequestServicesController {
 		return ack;
 	}
 	
+	/**
+	 * Edit a order by id
+	 * @param int idRequest to edit
+	 * @param Request new order information
+	 * @return Ack request status
+	 * */
 	@PutMapping(value = "/request", consumes = "application/json", produces = "application/json")
 	public Ack updateClient(@RequestParam(name="idRequest") int idRequest,@RequestBody Request request) {
 		Ack ack = new Ack();

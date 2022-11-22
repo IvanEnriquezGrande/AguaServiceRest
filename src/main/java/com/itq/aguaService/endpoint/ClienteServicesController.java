@@ -29,7 +29,11 @@ public class ClienteServicesController {
 	
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
-	
+	/**
+	 * Send a client by id
+	 * @param int idClient to get information
+	 * @return Client the client properties
+	 * */
 	@GetMapping(value = "/client", produces = "application/json")
 	public Client readClient(@RequestParam(name="idCliente") int idCliente) {
 		Client client = new Client(1);
@@ -43,6 +47,10 @@ public class ClienteServicesController {
 		return client;
 	}
 	
+	/**
+	 * Send a client index
+	 * @return Ack with the description and list of clients
+	 * */
 	@GetMapping(value = "/client/index", produces = "application/json")
 	public Ack indexClient() {
 		logger.info("Peticion de todos los clientes");
@@ -59,6 +67,11 @@ public class ClienteServicesController {
 		return ack;
 	}
 	
+	/**
+	 * Create a client
+	 * @param Client the valid values
+	 * @return Ack return the status of the new client
+	 * */
 	@PostMapping(value = "/client", consumes = "application/json", produces = "application/json")
 	public Ack createClient(@Valid@RequestBody Client cliente) {
 		ClientServiceBusiness.addClient(cliente);
@@ -69,6 +82,11 @@ public class ClienteServicesController {
 		return ack;
 	}
 	
+	/**
+	 * Delete a client by id
+	 * @param int idClient to delte
+	 * @return Ack with the delete status
+	 * */
 	@DeleteMapping(value = "/client", produces = "application/json")
 	public Ack deleteClient(@RequestParam(name="idCliente") int idCliente) {
 		Ack ack = new Ack();
@@ -88,6 +106,12 @@ public class ClienteServicesController {
 		return ack;
 	}
 	
+	/**
+	 * Edit a client by id
+	 * @param int idClient to edit
+	 * @param Client new client information
+	 * @return Ack request status
+	 * */
 	@PutMapping(value = "/client", consumes = "application/json", produces = "application/json")
 	public Ack updateClient(@RequestParam(name="idClient") int idClient,@RequestBody Client client) {
 		Ack ack = new Ack();
